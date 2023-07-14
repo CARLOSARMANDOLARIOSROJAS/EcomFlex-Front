@@ -2,6 +2,7 @@ import { PRODUCTS } from "../../products"
 import { Product } from "./Product"
 
 export const Shop = () => {
+
   return (
     <div className="shop">
         <div className="title">
