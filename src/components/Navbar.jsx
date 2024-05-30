@@ -6,7 +6,7 @@ export const Navbar = () => {
       <div className="left">
         <li>
           <Link to="/" className="link">
-            UStyle Shoping
+            EcomFlex
           </Link>
         </li>
       </div>
@@ -17,10 +17,10 @@ export const Navbar = () => {
         </label>
         <ul className="list">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Inicio</Link>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <Link to="/about">Nosotros</Link>
           </li>
           <li>
             <Link to="/cart">
