@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, TextField, Typography, createTheme, ThemeProvider } from '@mui/material';
+import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, TextField, Typography, createTheme, ThemeProvider } from '@mui/material';
 import { red } from '@mui/material/colors';
 
 const defaultTheme = createTheme();
@@ -36,6 +36,7 @@ const Login = () => {
       navigate('/admin/dashboard');
     } catch (err) {
       setError('Credenciales inválidas');
+      localStorage.removeItem('token'); // Eliminar el token en caso de error de inicio de sesión
       setTimeout(() => {
         setError('');
       }, 3000);
@@ -106,13 +107,13 @@ const Login = () => {
                     {error}
                 </Typography>
             )}
-            <Grid container>
+            {/* <Grid container>
               <Grid item>
                 <Link href="#" variant="body2">
                   {"No tienes una cuenta? Registrate"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
