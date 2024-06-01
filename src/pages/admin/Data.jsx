@@ -5,13 +5,14 @@ import { NavbarAdmin } from "../../components/NavbarAdmin";
 
 export const Data = () => {
 
+    const URL = import.meta.env.VITE_BACKEND_URL;
     const [prodByCategory, setProdByCategory] = useState([]);
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const fetchProductsByCategory = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/products/by-category')
+                const response = await axios.get(`${URL}/api/products/by-category`)
                 const data = response.data;
                 setProdByCategory(data);
             } catch (error) {
@@ -25,7 +26,7 @@ export const Data = () => {
     useEffect(() => {
         const getCategories = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/categories");
+                const response = await axios.get(`${URL}/api/categories`);
                 setCategories(response.data);
             } catch (error) {
                 console.error("Error al obtener categorías:", error);

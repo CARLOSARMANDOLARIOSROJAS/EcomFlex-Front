@@ -81,7 +81,7 @@ export const Dashboard = () => {
     formData.append("image_url", image_url);
 
     try {
-      const { data } = await axios.post("http://localhost:3000/api/products", formData, {
+      const { data } = await axios.post(`${URL}/api/products`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

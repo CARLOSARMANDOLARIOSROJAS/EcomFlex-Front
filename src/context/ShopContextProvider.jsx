@@ -3,6 +3,8 @@ import axios from "axios";
 
 export const ShopContext = createContext(null);
 
+const URL = import.meta.env.VITE_BACKEND_URL;
+
 const getDefaultCart = (products) => {
   let cart = {};
   for (let product of products) { 
@@ -18,7 +20,7 @@ export const ShopContextProvider = (props) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/products");
+        const response = await axios.get(`${URL}/api/products`);
         setProducts(response.data);
         setCartItems(getDefaultCart(response.data)); // Initialize cartItems after products are fetched
       } catch (error) {
