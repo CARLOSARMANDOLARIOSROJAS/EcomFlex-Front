@@ -6,9 +6,11 @@ export const Products = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('API URL:', process.env.REACT_APP_API_URL);
+
     const getProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/products");
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products`);
         const data = await response.json();
         setProducts(data);
         setLoading(false);
