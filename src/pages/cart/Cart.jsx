@@ -11,10 +11,12 @@ export const Cart = () => {
   const totalAmount = getSubtotal();
   const navigate = useNavigate();
 
+  const URL = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/products");
+        const response = await axios.get(`${URL}/api/products`);
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
