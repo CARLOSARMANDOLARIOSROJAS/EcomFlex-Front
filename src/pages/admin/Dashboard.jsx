@@ -5,6 +5,7 @@ import { Alerta } from "../../components/Alerta";
 import { Link } from "react-router-dom";
 
 export const Dashboard = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
 
   const initialState = {
     name: "",
@@ -23,7 +24,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const getCategorias = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/categories");
+        const response = await axios.get(`${URL}/api/categories`);
         setCategories(response.data);
       } catch (error) {
         console.error(error);
