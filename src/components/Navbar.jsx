@@ -23,6 +23,9 @@ export const Navbar = () => {
             <Link to="/about">Nosotros</Link>
           </li>
           <li>
+            <Link to="/admin/login">Admin</Link>
+          </li>
+          <li>
             <Link to="/cart">
               <i className="fa-solid fa-cart-shopping"></i>
             </Link>

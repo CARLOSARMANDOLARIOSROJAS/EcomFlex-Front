@@ -61,7 +61,7 @@ const Login = () => {
             {/* Icono de avatar */}
           </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+            Inicia Sesión
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -99,7 +99,7 @@ const Login = () => {
               sx={{ mt: 3, mb: 2 }}
 
             >
-              Login
+              Entrar
               
             </Button>
             {error && (

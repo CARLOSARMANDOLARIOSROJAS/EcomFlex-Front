@@ -1,17 +1,20 @@
 import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContextProvider";
 
-export const Product = (props) => {
-  const { id, productName, price, productImage } = props.data;
+export const Product = ({ data }) => {
+  const { id, name, price, image_url } = data;
   const { addToCart, cartItems } = useContext(ShopContext);
-  const cartItemAmount = cartItems[id];
+  const cartItemAmount = cartItems[id] || 0;
+
+  // Verifica que la ruta de la imagen esté bien formada
+  const imageUrl = image_url.startsWith('/') ? `http://localhost:3000${image_url}` : image_url;
 
   return (
     <div className="product">
-      <img src={productImage} alt="" />
+      <img src={imageUrl} alt={name} />
       <div className="description">
         <p className="productTitle">
-          <b>{productName}</b>
+          <b>{name}</b>
         </p>
         <p>${price}</p>
       </div>

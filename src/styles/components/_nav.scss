@@ -69,7 +69,7 @@
         text-align: center;
         display: flex;
         flex-direction: column;
-        position: fixed;
+        position: absolute;
         top: 7rem;
         left: 100%;
         transition: all 1s;
@@ -88,3 +88,4 @@
     }
 
 }
+

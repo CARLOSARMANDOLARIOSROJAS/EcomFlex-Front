@@ -2,6 +2,7 @@ import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { Alerta } from "../../components/Alerta";
+import { Link } from "react-router-dom";
 
 export const Dashboard = () => {
 
@@ -43,12 +44,12 @@ export const Dashboard = () => {
     })
   }
 
-   const handleChangeCategoria = (e) => {
-     const opcionId = e.target.value;
-     setValues({
-        ...values, categoryId: opcionId
-      });
-   };
+  const handleChangeCategoria = (e) => {
+    const opcionId = e.target.value;
+    setValues({
+      ...values, categoryId: opcionId
+    });
+  };
 
   const handleChangeImagen = (e) => {
     const selectedFile = e.target.files[0];
@@ -60,9 +61,9 @@ export const Dashboard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const { name, price, categoryId, image_url } = values;
-  
+
     if ([name, price, categoryId].includes("") || !image_url) {
       setAlerta({
         msg: "Todos los campos son obligatorios",
@@ -71,20 +72,20 @@ export const Dashboard = () => {
       alertaRef.current.scrollIntoView({ behavior: "smooth" });
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
     formData.append("categoryId", categoryId);
     formData.append("image_url", image_url);
-  
+
     try {
       const { data } = await axios.post("http://localhost:3000/api/products", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       if (data.msg === "Ya existe ese producto") {
         setAlerta({
           msg: data.msg,
@@ -98,10 +99,10 @@ export const Dashboard = () => {
         });
         alertaRef.current.scrollIntoView({ behavior: "smooth" });
       }
-      
+
       // Reset form
       resetForm();
-  
+
       // Remove success message after 3 seconds
       setTimeout(() => {
         setAlerta({
@@ -109,7 +110,7 @@ export const Dashboard = () => {
           error: false,
         });
       }, 3000);
-  
+
     } catch (error) {
       setAlerta({
         msg: 'Ocurrió un error',
@@ -118,78 +119,98 @@ export const Dashboard = () => {
       alertaRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
+
 
   console.log(values);
 
   const { msg } = alerta;
   return (
     <div ref={alertaRef}>
-    <Container maxWidth="md" >
-      <Typography variant="h2" component="h2" align="center" gutterBottom>
-        Añadir Producto - EcomFlex
-      </Typography>
-      <form onSubmit={handleSubmit}>
-      {msg && <Alerta alerta={alerta} />}
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Nombre del producto"
-              name="name"
-              required
-              fullWidth
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Precio"
-              name="price"
-              type="number"
-              onChange={handleChange}
-              required
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <select
-              name="categoryId"
-              onChange={handleChangeCategoria}
-              style={{ height: 40 }}
-              className="col-12 col-xs-6"
-              required
-            >
-              <option value="">Elige una categoría</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </Grid>
-          <Grid item xs={12}>
-            <input type="file" 
-            className="form-control"
-            accept="image/jpg, image/png, image/jpeg"
-            onChange={handleChangeImagen}
-            required />
-            
-          </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained" fullWidth>
-              Añadir Producto
-            </Button>
-          </Grid>
-          {error && (
-            <Grid item xs={12}>
-              <Typography color="error" align="center">
-                {error}
-              </Typography>
+      <Container maxWidth="md" >
+        <Typography variant="h2" component="h2" align="center" gutterBottom>
+          Añadir Producto - EcomFlex
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          {msg && <Alerta alerta={alerta} />}
+          <Grid container spacing={2}>
+            <Grid item xs={6} sm={6}>
+              <TextField
+                label="Nombre del producto"
+                name="name"
+                required
+                fullWidth
+                onChange={handleChange}
+              />
             </Grid>
-          )}
-        </Grid>
-      </form>
-    </Container>
+            <Grid item xs={6} sm={6}>
+              <TextField
+                label="Precio"
+                name="price"
+                type="number"
+                onChange={handleChange}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <select
+                name="categoryId"
+                onChange={handleChangeCategoria}
+                style={{ height: 40 }}
+                className="col-12 col-xs-6"
+                required
+              >
+                <option value="">Elige una categoría</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </Grid>
+            <Grid item xs={6}>
+              <input type="file"
+                className="form-control"
+                accept="image/jpg, image/png, image/jpeg"
+                onChange={handleChangeImagen}
+                required />
+
+            </Grid>
+            <Grid item xs={6} style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              margin: "auto",
+              marginTop: 20,
+              gap: 20
+            }}>
+              <Button type="submit" variant="contained" fullWidth>
+                Añadir Producto
+              </Button>
+              <Button variant="contained" style={{
+                width: 400,
+                height: 40,
+                backgroundColor: 'black',
+              }}>
+                <Link to='/admin/dashboard' style={{
+                  textDecoration: 'none',
+                  color: 'white',
+
+                }}>Regresar al Dashboard</Link>
+              </Button>
+            </Grid>
+
+            {error && (
+              <Grid item xs={12}>
+                <Typography color="error" align="center">
+                  {error}
+                </Typography>
+              </Grid>
+            )}
+          </Grid>
+        </form>
+      </Container>
     </div>
   );
 };
