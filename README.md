@@ -59,3 +59,6 @@ EcomFlex es una aplicación de comercio electrónico construida con React y Vite
 4. **Dashboard:** En el dashboard se muestra un gráfico de la cantidad de productos por categoría.
 5. **Agregar Productos:** Los administradores pueden agregar nuevos productos desde la sección de administración, los cuales se reflejarán en la página de inicio.
 
+## Deploy en Netlify
+
+https://ecomflex.netlify.app
