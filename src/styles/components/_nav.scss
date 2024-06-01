@@ -6,6 +6,38 @@
     align-items: center;
     color: #fff;
 }
+.navbar-custom {
+    background-color: rgb(22, 7, 36); /* Color gris claro */
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  
+  .titulo-nav {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+
+
+.titulo-nav{
+    font-size: 2rem;
+    margin-left: 1rem;
+    color: white;
+}
+
+.titulo-nav:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.carrito {
+    font-size: 1rem;
+    margin-right: 1rem;
+    color: white;
+
+}
 
 .left li {
     list-style: none;
@@ -58,7 +90,7 @@
 .right ul li a:hover {
     background-color: #fff;
     border-radius: 7px;
-    color: rgb(22, 7, 36);
+    color: white;
 }
 
 @media screen and (max-width:805px) {

@@ -1,37 +1,39 @@
-import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
 
-export const Navbar = () => {
+export const NavbarHome = () => {
   return (
-    <nav className="navbar">
-      <div className="left">
-        <li>
-          <Link to="/" className="link">
-            EcomFlex
-          </Link>
-        </li>
-      </div>
-      <div className="right">
-        <input type="checkbox" id="check" />
-        <label htmlFor="check" className="checkBtn">
-          <i className="fa fa-bars"></i>
-        </label>
-        <ul className="list">
-          <li>
-            <Link to="/">Inicio</Link>
-          </li>
-          <li>
-            <Link to="/about">Nosotros</Link>
-          </li>
-          <li>
-            <Link to="/admin/login">Admin</Link>
-          </li>
-          <li>
-            <Link to="/cart">
-              <i className="fa-solid fa-cart-shopping"></i>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navbar expand="lg" className="navbar-custom">
+      <Container>
+        <Navbar.Brand className='titulo-nav'>EcomFlex</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link>
+              <Link style={{ textDecoration: 'none' }} to='/'>
+                Inicio
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link style={{ textDecoration: 'none' }}>
+                Nosotros
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link style={{ textDecoration: 'none' }} to='/admin/login'>
+                Admin
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/cart">
+                <i className="carrito fa-solid fa-cart-shopping"></i>
+              </Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-};
+}

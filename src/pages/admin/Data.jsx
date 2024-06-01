@@ -8,11 +8,12 @@ export const Data = () => {
     const URL = import.meta.env.VITE_BACKEND_URL;
     const [prodByCategory, setProdByCategory] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [chartData, setChartData] = useState({ series: [], labels: [] });
 
     useEffect(() => {
         const fetchProductsByCategory = async () => {
             try {
-                const response = await axios.get(`${URL}/api/products/by-category`)
+                const response = await axios.get(`${URL}/api/products/by-category`);
                 const data = response.data;
                 setProdByCategory(data);
             } catch (error) {
@@ -35,11 +36,26 @@ export const Data = () => {
         getCategories();
     }, []);
 
+    useEffect(() => {
+        if (prodByCategory.length && categories.length) {
+            const series = [];
+            const labels = [];
 
+            prodByCategory.forEach((prod) => {
+                const category = categories.find(cat => cat.id === prod.categoryId);
+                if (category) {
+                    series.push(prod._count.name);
+                    labels.push(category.name);
+                }
+            });
+
+            setChartData({ series, labels });
+        }
+    }, [prodByCategory, categories]);
 
     return (
-        <div >
-                <NavbarAdmin />
+        <div>
+            <NavbarAdmin />
             <div>
                 <div
                     style={{
@@ -52,11 +68,7 @@ export const Data = () => {
                 >
                     <div className="">
                         <Chart
-                            series={
-                                prodByCategory.map((cat) => (
-                                    cat._count.name
-                                ))
-                            }
+                            series={chartData.series}
                             options={{
                                 title: {
                                     text: "Cantidad de productos por categoría",
@@ -79,7 +91,6 @@ export const Data = () => {
                                         breakpoint: 480,
                                     },
                                 ],
-
                                 chart: {
                                     type: "pie",
                                     toolbar: {
@@ -110,7 +121,7 @@ export const Data = () => {
                                         colors: "#333",
                                     },
                                 },
-                                labels: categories.map((cat) => cat.name),
+                                labels: chartData.labels,
                             }}
                             type="pie"
                             width={380}
