@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { Product } from "./Product"; // Asegúrate de que la ruta es correcta
 
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('API URL:', process.env.REACT_APP_API_URL);
 
     const getProducts = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products`);
+        const response = await fetch(`${URL}/api/products`);
         const data = await response.json();
         setProducts(data);
         setLoading(false);
