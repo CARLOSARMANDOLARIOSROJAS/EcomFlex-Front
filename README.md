@@ -14,6 +14,11 @@ EcomFlex es una aplicación de comercio electrónico construida con React y Vite
 - Prisma (ORM)
 - PostgreSQL (Base de datos)
 
+## Despliegue
+
+Puedes ver la aplicación desplegada en Netlify: [EcomFlex en Netlify](https://ecomflex.netlify.app)
+
+
 ## Características
 
 - **Inicio:** Página principal donde se muestran los productos disponibles.
@@ -59,6 +64,4 @@ EcomFlex es una aplicación de comercio electrónico construida con React y Vite
 4. **Dashboard:** En el dashboard se muestra un gráfico de la cantidad de productos por categoría.
 5. **Agregar Productos:** Los administradores pueden agregar nuevos productos desde la sección de administración, los cuales se reflejarán en la página de inicio.
 
-## Deploy en Netlify
 
-https://ecomflex.netlify.app
