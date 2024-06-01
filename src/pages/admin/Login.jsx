@@ -20,6 +20,7 @@ function Copyright(props) {
 }
 
 const Login = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,7 +29,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/login', {
+      const response = await axios.post(`${URL}/api/auth/login`, {
         email,
         password,
       });
