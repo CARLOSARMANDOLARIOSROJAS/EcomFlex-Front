@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Product } from "./Product"; // Asegúrate de que la ruta es correcta
 
-const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 export const Products = () => {
   const [products, setProducts] = useState([]);
