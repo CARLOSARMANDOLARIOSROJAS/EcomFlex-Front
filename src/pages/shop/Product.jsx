@@ -9,7 +9,7 @@ export const Product = ({ data }) => {
   const cartItemAmount = cartItems[id] || 0;
 
   // Verifica que la ruta de la imagen esté bien formada
-  const imageUrl = image_url.startsWith('/') ? `${URL}${image_url}` : image_url;
+  const imageUrl = image_url;
 
   return (
     <div className="product">
