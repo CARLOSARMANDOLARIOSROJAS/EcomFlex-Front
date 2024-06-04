@@ -4,11 +4,12 @@ import { useContext } from "react";
 export const CartItem = (props) => {
   const { id, name, price, image_url } = props.data;
   const { cartItems, addToCart, removeFromCart, newAmount } = useContext(ShopContext);
-  const URL = import.meta.env.VITE_BACKEND_URL;
+
+
   return (
     <div className="cartItem">
       <div className="cartItem-image">
-        <img src={`${URL}${image_url}`} alt={name} />
+        <img src={image_url} alt={name} />
       </div>
       <div className="description">
         <p>
